@@ -7,7 +7,7 @@
     "test": "jest",
     "test:watch": "jest --watchALL",
     "test:coverage": "jest --collectCoverage",
-    "lint:check":"eslint ./src/**",
+    "lint:check": "eslint ./src/**",
     "lint:fix": "eslint .src/** --fix"
   },
   "keywords": [],

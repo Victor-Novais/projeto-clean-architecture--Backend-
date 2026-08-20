@@ -1,21 +1,36 @@
-import {randomUUID}  from 'node:crypto'
-type EmployeeType={
+import Entity from "../../../core/entities/entity";
+import Identity from "../../../core/entities/identity";
+type EmployeeType = {
+  name: string;
+  email: string;
+  password: string;
+};
+export default class Employee extends Entity<EmployeeType> {
+  constructor(data: EmployeeType, id?: Identity) {
+    super(data, id);
+  }
+  get name() {
+    return this.attributes.name;
+  }
+  get email() {
+    return this.attributes.email;
+  }
+  get password() {
+    return this.attributes.password;
+  }
 
-   name : string;
-   eamil :string;
-   password: string;
-
+  set name(name: string) {
+    this.attributes.name = name;
+  }
+  set email(email: string) {
+    this.attributes.email = email;
+  }
+  set password(password: string) {
+    this.attributes.password = password;
+  }
 }
-export default class Employee{
-  private id: string;
-  private name : string;
-  private eamil :string;
-  private password: string;
-
-constructor(data: EmployeeType,id?: string){
-  this.name = data.name
-  this.eamil =data.eamil
-  this.password = data.password
-  this.id = id??randomUUID
-}
-}
+const emp = new Employee({
+  name: "victor novais",
+  email: "victor.dev@gmail.com",
+  password: "victor123",
+});

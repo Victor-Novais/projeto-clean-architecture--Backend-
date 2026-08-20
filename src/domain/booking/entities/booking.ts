@@ -1,7 +1,11 @@
 import { randomUUID } from "node:crypto";
 import Room from "../../employee/entities/room";
 import type nodeTls = require("node:tls");
-import Stream = require("node:stream");
+import Employee from "../../employee/entities/employee";
+import { runInThisContext } from "node:vm";
+import Entity from "../../../core/entities/entity";
+import Identity from "../../../core/entities/identity";
+
 type BookingType = {
   room: Room;
   days: number;
@@ -9,20 +13,37 @@ type BookingType = {
   email: string;
   isActive: boolean;
 };
-export default class Booking {
-  private id: string;
-  private room: Room;
-  private days: number;
-  private customer: string;
-  private email: string;
-  private isActive: boolean;
+export default class Booking extends Entity<BookingType> {
+  constructor(data: BookingType, id?: Identity) {
+    super(data, id);
+  }
+  get room() {
+    return this.attributes.room;
+  }
+  get days() {
+    return this.attributes.days;
+  }
+  get customer() {
+    return this.attributes.customer;
+  }
 
-  constructor(data: BookingType, id?: string) {
-    this.room = data.room;
-    this.days = data.days;
-    this.customer = data.customer;
-    this.email = data.email;
-    this.isActive = data.isActive;
-    this.id = id ?? randomUUID;
+  get email() {
+    return this.attributes.email;
+  }
+  get isActive() {
+    return this.attributes.isActive;
+  }
+  set days(days: number) {
+    this.attributes.days = days;
+  }
+  set customer(customer: string) {
+    this.attributes.customer = customer;
+  }
+
+  set email(email: string) {
+    this.attributes.email = email;
+  }
+  set isActive(isActive: boolean) {
+    this.attributes.isActive = isActive;
   }
 }
