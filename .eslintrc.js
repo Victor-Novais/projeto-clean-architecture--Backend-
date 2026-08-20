@@ -15,17 +15,17 @@ module.exports = {
     jest: true
   },
   ignorePatterns: ['.eslintrc.js'],
-  rules: {
+    rules: {
     'prettier/prettier': [
       'error',
       {
         semi: true,
         singleQuote: true,
-        arrowParens: 'avoid',
-        useTabs: true,
-        trailingComma: 'none',
-        tabWidth: 4
+        trailingComma: 'es5',
+        tabWidth: 2,
+        useTabs: false
       }
     ]
   }
+
 }
