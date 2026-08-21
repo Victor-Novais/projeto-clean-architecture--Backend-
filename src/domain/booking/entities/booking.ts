@@ -5,6 +5,7 @@ import Employee from "../../employee/entities/employee";
 import { runInThisContext } from "node:vm";
 import Entity from "../../../core/entities/entity";
 import Identity from "../../../core/entities/identity";
+import { Optional } from "../../../core/types/optional";
 
 type BookingType = {
   room: Room;
@@ -14,8 +15,14 @@ type BookingType = {
   isActive: boolean;
 };
 export default class Booking extends Entity<BookingType> {
-  static create(data: BookingType, id?: Identity) {
-    return new Booking(data, id);
+  static create(data: Optional<BookingType, "isActive">, id?: Identity) {
+    return new Booking(
+      {
+        ...data,
+        isActive: data.isActive ?? true,
+      },
+      id,
+    );
   }
   get room() {
     return this.attributes.room;

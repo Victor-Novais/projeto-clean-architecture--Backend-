@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import Entity from "../../../core/entities/entity";
 import { get } from "node:http";
 import Identity from "../../../core/entities/identity";
+import { Optional } from "../../../core/types/optional";
 type RoomType = {
   name: string;
   price: number;
@@ -13,8 +14,24 @@ type RoomType = {
   isAvaliable: boolean;
 };
 export default class Room extends Entity<RoomType> {
-  static create(data: RoomType, id?: Identity) {
-    return new Room(data, id);
+  static create(
+    data: Optional<
+      RoomType,
+      "hasWifi" | "hasAir" | "hasKitchen" | "isPetFriendly" | "isAvaliable"
+    >,
+    id?: Identity,
+  ) {
+    return new Room(
+      {
+        ...data,
+        hasWifi: data.hasWifi ?? false,
+        hasAir: data.hasAir ?? false,
+        hasKitchen: data.hasKitchen ?? false,
+        isPetFriendly: data.isPetFriendly ?? false,
+        isAvaliable: data.isAvaliable ?? true,
+      },
+      id,
+    );
   }
   get name() {
     return this.attributes.name;
