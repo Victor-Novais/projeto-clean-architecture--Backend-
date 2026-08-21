@@ -13,8 +13,8 @@ type RoomType = {
   isAvaliable: boolean;
 };
 export default class Room extends Entity<RoomType> {
-  constructor(data: RoomType, id?: Identity) {
-    super(data, id);
+  static create(data: RoomType, id?: Identity) {
+    return new Room(data, id);
   }
   get name() {
     return this.attributes.name;

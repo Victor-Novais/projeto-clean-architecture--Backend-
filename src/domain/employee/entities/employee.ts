@@ -6,8 +6,8 @@ type EmployeeType = {
   password: string;
 };
 export default class Employee extends Entity<EmployeeType> {
-  constructor(data: EmployeeType, id?: Identity) {
-    super(data, id);
+  static create(data: Employee, id?: Identity) {
+    return new Employee(data, id);
   }
   get name() {
     return this.attributes.name;
@@ -29,8 +29,3 @@ export default class Employee extends Entity<EmployeeType> {
     this.attributes.password = password;
   }
 }
-const emp = new Employee({
-  name: "victor novais",
-  email: "victor.dev@gmail.com",
-  password: "victor123",
-});
