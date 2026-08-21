@@ -3,9 +3,10 @@ import Entity from "../../../core/entities/entity";
 import { get } from "node:http";
 import Identity from "../../../core/entities/identity";
 import { Optional } from "../../../core/types/optional";
+import Money from "../../shared/value-objects/money";
 type RoomType = {
   name: string;
-  price: number;
+  price: Money;
   image: string;
   hasWifi: boolean;
   hasAir: boolean;
@@ -62,7 +63,7 @@ export default class Room extends Entity<RoomType> {
   set name(name: string) {
     this.attributes.name;
   }
-  set price(price: number) {
+  set price(price: Money) {
     this.attributes.price = price;
   }
   set image(image: string) {
