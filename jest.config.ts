@@ -3,12 +3,13 @@
  * https://jestjs.io/docs/configuration
  */
 
-import type {Config} from 'jest';
+import type { Config } from "jest";
 
 const config: Config = {
   // All imported modules in your tests should be mocked automatically
   // automock: false,
-
+  preset: "ts-jest",
+  testEnvironment: "node",
   // Stop running tests after `n` failures
   // bail: 0,
 

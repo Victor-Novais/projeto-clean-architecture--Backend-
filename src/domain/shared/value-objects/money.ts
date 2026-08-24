@@ -2,7 +2,7 @@ export default class Money {
   private constructor(readonly value: number) {
     this.value = value;
   }
-  static creat(value: number) {
+  static create(value: number) {
     return new Money(value);
   }
 
