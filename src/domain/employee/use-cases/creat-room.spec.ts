@@ -6,16 +6,31 @@ type Request = {
   price: number;
   image: string;
 };
+
+abstract class RoomRepository {
+  abstract create(romm: Room): Room;
+}
+
 class CreatRoomUseCase {
+  constructor(private roomReapository: RoomRepository) {}
   handle(data: Request) {
     const price = Money.create(data.price);
     const room = Room.create({ ...data, price });
+    this.roomReapository.create(room);
+    return room;
+  }
+}
+class RoomMemory implements RoomRepository {
+  private rooms: Room[] = [];
+  create(room: Room) {
+    this.rooms.push(room);
     return room;
   }
 }
 describe("Criação de quarto", () => {
   test("Deve criar um quarto", () => {
-    const useCase = new CreatRoomUseCase();
+    const roomMemory = new RoomMemory();
+    const useCase = new CreatRoomUseCase(roomMemory);
     const room = useCase.handle({
       name: "Suite",
       price: 120000,
