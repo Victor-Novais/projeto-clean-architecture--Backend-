@@ -11,8 +11,8 @@ describe("Criação de quarto", () => {
     roomRepository = new InMemoryRoomMemory();
     useCase = new CreatRoomUseCase(roomRepository);
   });
-  test("Deve criar um quarto", () => {
-    const room = useCase.handle({
+  test("Deve criar um quarto", async () => {
+    const room = await useCase.handle({
       name: "Suite",
       price: 120000,
       image: "room.jpg",

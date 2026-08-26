@@ -15,10 +15,10 @@ type Request = {
 
 export class CreatRoomUseCase {
   constructor(private roomReapository: RoomRepository) {}
-  handle(data: Request) {
+  async handle(data: Request) {
     const price = Money.create(data.price);
     const room = Room.create({ ...data, price });
-    this.roomReapository.create(room);
+    await this.roomReapository.create(room);
     return room;
   }
 }

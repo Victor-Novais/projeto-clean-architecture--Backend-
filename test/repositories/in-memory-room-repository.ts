@@ -3,7 +3,7 @@ import { RoomRepository } from "../../src/domain/employee/repositories/room-repo
 
 export class InMemoryRoomMemory implements RoomRepository {
   items: Room[] = [];
-  create(room: Room): Room {
+  async create(room: Room) {
     this.items.push(room);
     return room;
   }
