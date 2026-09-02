@@ -7,4 +7,8 @@ export class InMemoryRoomMemory implements RoomRepository {
     this.items.push(room);
     return room;
   }
+
+  async findMany() {
+    return this.items;
+  }
 }
