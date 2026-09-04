@@ -11,4 +11,9 @@ export class InMemoryRoomMemory implements RoomRepository {
   async findMany() {
     return this.items;
   }
+
+  async findById(id: string) {
+    const room = this.items.find((item) => item.id.toString() === id);
+    return room;
+  }
 }

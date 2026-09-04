@@ -1,9 +1,7 @@
 import Room from "../entities/room";
 import Money from "../../shared/value-objects/money";
 import { InMemoryRoomMemory } from "../../../../test/repositories/in-memory-room-repository";
-import { CreatRoomUseCase } from "./create-room";
-import Identity from "../../../core/entities/identity";
-import { ListRoomUseCase } from "./list-room copy";
+import { ListRoomUseCase } from "./list-room";
 
 let roomRepository: InMemoryRoomMemory;
 let useCase: ListRoomUseCase;
